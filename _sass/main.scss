@@ -122,9 +122,32 @@ a {
 }
 
 .latest-post-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-unit;
   padding: $spacing-unit;
   border: 1px solid rgba($color-text, 0.15);
   border-radius: 12px;
+}
+
+.latest-post-image-link {
+  flex-shrink: 0;
+}
+
+.latest-post-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.latest-post-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .latest-post-link {
@@ -154,6 +177,7 @@ a {
   font-size: 1rem;
   color: $color-text;
   line-height: 1.6;
+  margin-top: $spacing-unit * 0.25;
 }
 
 // All Posts Section
@@ -378,6 +402,15 @@ a {
 
   .post-title {
     font-size: 1.75rem;
+  }
+
+  .latest-post-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .latest-post-title {
+    font-size: 1.15rem;
   }
 
   .post-list-item {

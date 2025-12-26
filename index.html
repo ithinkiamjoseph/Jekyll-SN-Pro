@@ -15,15 +15,22 @@ layout: default
   <section class="latest-post">
     <h2 class="section-header">Latest Post</h2>
     <article class="latest-post-item">
-      <a href="{{ latest_post.url | relative_url }}" class="latest-post-link">
-        <h3 class="latest-post-title">{{ latest_post.title }}</h3>
-        <time class="latest-post-date" datetime="{{ latest_post.date | date_to_xmlschema }}">
-          {{ latest_post.date | date: "%B %d, %Y" }}
-        </time>
-      </a>
-      {% if latest_post.description %}
-        <p class="latest-post-description">{{ latest_post.description }}</p>
+      {% if latest_post.featured_image %}
+        <a href="{{ latest_post.url | relative_url }}" class="latest-post-image-link">
+          <img src="{{ latest_post.featured_image | relative_url }}" alt="" class="latest-post-image">
+        </a>
       {% endif %}
+      <div class="latest-post-content">
+        <a href="{{ latest_post.url | relative_url }}" class="latest-post-link">
+          <h3 class="latest-post-title">{{ latest_post.title }}</h3>
+          <time class="latest-post-date" datetime="{{ latest_post.date | date_to_xmlschema }}">
+            {{ latest_post.date | date: "%B %d, %Y" }}
+          </time>
+        </a>
+        {% if latest_post.description %}
+          <p class="latest-post-description">{{ latest_post.description }}</p>
+        {% endif %}
+      </div>
     </article>
   </section>
 
