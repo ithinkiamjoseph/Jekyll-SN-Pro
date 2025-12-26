@@ -10,6 +10,12 @@ layout: default
       {{ page.date | date: "%B %d, %Y" }}
     </time>
   </header>
+
+  {% if page.featured_image %}
+  <figure class="post-featured-image">
+    <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}">
+  </figure>
+  {% endif %}
   
   <div class="post-content">
     {{ content }}
