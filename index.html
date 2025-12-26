@@ -37,11 +37,18 @@ layout: default
         <h3 class="year-header">{{ year.name }}</h3>
         <ul class="post-list">
           {% for post in year.items %}
-            <li class="post-list-item">
-              <a href="{{ post.url | relative_url }}" class="post-list-title">{{ post.title }}</a>
-              <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: "%b %d" }}
-              </time>
+            <li class="post-list-item {% if post.featured_image %}has-image{% endif %}">
+              {% if post.featured_image %}
+                <a href="{{ post.url | relative_url }}" class="post-list-image-link">
+                  <img src="{{ post.featured_image | relative_url }}" alt="" class="post-list-image">
+                </a>
+              {% endif %}
+              <div class="post-list-content">
+                <a href="{{ post.url | relative_url }}" class="post-list-title">{{ post.title }}</a>
+                <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%b %d" }}
+                </time>
+              </div>
             </li>
           {% endfor %}
         </ul>
