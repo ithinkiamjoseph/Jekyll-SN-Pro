@@ -1,0 +1,22 @@
+# Site settings
+title: Joseph Wood
+description: I design websites and app interfaces with a focus on simplicity.
+url: "" # Base URL for GitHub Pages (e.g., https://username.github.io)
+baseurl: "" # Subpath if hosted at username.github.io/repo-name
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Sass settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+

@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+<section class="intro">
+  <h1 class="intro-name">Joseph Wood</h1>
+  <p class="intro-bio">I design websites and app interfaces with a focus on simplicity—cutting away the unnecessary to let the essential shine through. When I'm not designing, I'm exploring better ways to work and think, or out capturing moments with my camera.</p>
+</section>
+
+{% assign posts = site.posts %}
+
+{% if posts.size > 0 %}
+  {% assign latest_post = posts.first %}
+  
+  <section class="latest-post">
+    <h2 class="section-header">Latest Post</h2>
+    <article class="latest-post-item">
+      <a href="{{ latest_post.url | relative_url }}" class="latest-post-link">
+        <h3 class="latest-post-title">{{ latest_post.title }}</h3>
+        <time class="latest-post-date" datetime="{{ latest_post.date | date_to_xmlschema }}">
+          {{ latest_post.date | date: "%B %d, %Y" }}
+        </time>
+      </a>
+      {% if latest_post.description %}
+        <p class="latest-post-description">{{ latest_post.description }}</p>
+      {% endif %}
+    </article>
+  </section>
+
+  <section class="all-posts">
+    <h2 class="section-header">All Posts</h2>
+    
+    {% assign posts_by_year = posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    
+    {% for year in posts_by_year %}
+      <div class="year-group">
+        <h3 class="year-header">{{ year.name }}</h3>
+        <ul class="post-list">
+          {% for post in year.items %}
+            <li class="post-list-item">
+              <a href="{{ post.url | relative_url }}" class="post-list-title">{{ post.title }}</a>
+              <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %d" }}
+              </time>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </section>
+
+{% else %}
+  <p class="empty-state">No posts yet.</p>
+{% endif %}
+
