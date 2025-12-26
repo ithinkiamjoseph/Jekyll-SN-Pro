@@ -22,15 +22,39 @@
 // Variables
 // ============================================
 
-$color-bg: #0D0D0D;
-$color-text: #FFFFFF;
-$color-muted: #888888;
-$color-accent: #F34703;
-$color-accent-hover: lighten($color-accent, 10%);
-
 $font-family: "SN Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-
 $spacing-unit: 1.5rem;
+
+// ============================================
+// Theme Colors (CSS Custom Properties)
+// ============================================
+
+:root {
+  // Dark theme (default)
+  --color-bg: #0D0D0D;
+  --color-text: #FFFFFF;
+  --color-muted: #888888;
+  --color-accent: #F34703;
+  --color-accent-hover: #FF5A1F;
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-code-bg: rgba(255, 255, 255, 0.1);
+  --color-pre-bg: rgba(255, 255, 255, 0.05);
+  --toggle-bg: #333333;
+  --toggle-knob: #FFFFFF;
+}
+
+[data-theme="light"] {
+  --color-bg: #FAFAF9;
+  --color-text: #1A1A1A;
+  --color-muted: #6B6B6B;
+  --color-accent: #D93D00;
+  --color-accent-hover: #B83300;
+  --color-border: rgba(0, 0, 0, 0.12);
+  --color-code-bg: rgba(0, 0, 0, 0.06);
+  --color-pre-bg: rgba(0, 0, 0, 0.03);
+  --toggle-bg: #E0E0E0;
+  --toggle-knob: #FFFFFF;
+}
 
 // ============================================
 // Reset & Base
@@ -52,9 +76,10 @@ body {
   font-family: $font-family;
   font-weight: 400;
   line-height: 1.6;
-  color: $color-text;
-  background-color: $color-bg;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // ============================================
@@ -72,12 +97,12 @@ body {
 // ============================================
 
 a {
-  color: $color-accent;
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $color-accent-hover;
+    color: var(--color-accent-hover);
   }
 }
 
@@ -102,7 +127,7 @@ a {
   font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.7;
-  color: $color-text;
+  color: var(--color-text);
   max-width: 540px;
 }
 
@@ -112,7 +137,7 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: $color-muted;
+  color: var(--color-muted);
   margin-bottom: $spacing-unit;
 }
 
@@ -126,8 +151,9 @@ a {
   align-items: center;
   gap: $spacing-unit;
   padding: $spacing-unit;
-  border: 1px solid rgba($color-text, 0.15);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
+  transition: border-color 0.3s ease;
 }
 
 .latest-post-image-link {
@@ -157,14 +183,14 @@ a {
   margin-bottom: $spacing-unit * 0.5;
 
   &:hover .latest-post-title {
-    color: $color-accent;
+    color: var(--color-accent);
   }
 }
 
 .latest-post-title {
   font-size: 1.35rem;
   font-weight: 600;
-  color: $color-text;
+  color: var(--color-text);
   transition: color 0.2s ease;
   margin-bottom: 0.25rem;
 }
@@ -172,12 +198,12 @@ a {
 .latest-post-date {
   font-size: 0.9rem;
   font-weight: 400;
-  color: $color-muted;
+  color: var(--color-muted);
 }
 
 .latest-post-description {
   font-size: 1rem;
-  color: $color-text;
+  color: var(--color-text);
   line-height: 1.6;
   margin-top: $spacing-unit * 0.25;
 }
@@ -194,10 +220,11 @@ a {
 .year-header {
   font-size: 1.1rem;
   font-weight: 600;
-  color: $color-text;
+  color: var(--color-text);
   margin-bottom: $spacing-unit * 0.75;
   padding-bottom: $spacing-unit * 0.5;
-  border-bottom: 1px solid rgba($color-text, 0.1);
+  border-bottom: 1px solid var(--color-border);
+  transition: border-color 0.3s ease;
 }
 
 .post-list {
@@ -241,18 +268,18 @@ a {
 .post-list-title {
   font-size: 1rem;
   font-weight: 500;
-  color: $color-text;
+  color: var(--color-text);
   transition: color 0.2s ease;
 
   &:hover {
-    color: $color-accent;
+    color: var(--color-accent);
   }
 }
 
 .post-list-date {
   font-size: 0.85rem;
   font-weight: 400;
-  color: $color-muted;
+  color: var(--color-muted);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -269,11 +296,11 @@ a {
   display: inline-block;
   font-size: 0.9rem;
   font-weight: 500;
-  color: $color-muted;
+  color: var(--color-muted);
   margin-bottom: $spacing-unit * 1.5;
   
   &:hover {
-    color: $color-accent;
+    color: var(--color-accent);
   }
 }
 
@@ -289,7 +316,7 @@ a {
   display: block;
   font-size: 0.95rem;
   font-weight: 400;
-  color: $color-muted;
+  color: var(--color-muted);
 }
 
 .post-featured-image {
@@ -333,27 +360,29 @@ a {
   }
 
   blockquote {
-    border-left: 3px solid $color-accent;
+    border-left: 3px solid var(--color-accent);
     padding-left: $spacing-unit;
     margin: $spacing-unit 0;
-    color: $color-muted;
+    color: var(--color-muted);
     font-style: italic;
   }
 
   code {
     font-family: "SF Mono", "Fira Code", monospace;
     font-size: 0.9em;
-    background: rgba($color-text, 0.1);
+    background: var(--color-code-bg);
     padding: 0.15em 0.4em;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
   }
 
   pre {
-    background: rgba($color-text, 0.05);
+    background: var(--color-pre-bg);
     padding: $spacing-unit;
     border-radius: 8px;
     overflow-x: auto;
     margin-bottom: $spacing-unit;
+    transition: background-color 0.3s ease;
 
     code {
       background: none;
@@ -363,8 +392,9 @@ a {
 
   hr {
     border: none;
-    border-top: 1px solid rgba($color-text, 0.1);
+    border-top: 1px solid var(--color-border);
     margin: $spacing-unit * 2 0;
+    transition: border-color 0.3s ease;
   }
 
   strong {
@@ -381,8 +411,71 @@ a {
 // ============================================
 
 .empty-state {
-  color: $color-muted;
+  color: var(--color-muted);
   font-style: italic;
+}
+
+// ============================================
+// Theme Toggle
+// ============================================
+
+.theme-toggle-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--toggle-bg);
+  padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.theme-toggle-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+  opacity: 0.7;
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .theme-toggle-knob {
+  transform: translateX(16px);
+}
+
+[data-theme="light"] .theme-toggle-track {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 // ============================================
