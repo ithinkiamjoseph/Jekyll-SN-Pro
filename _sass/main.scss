@@ -496,6 +496,238 @@ a {
 }
 
 // ============================================
+// Photos Section - Album Stacks
+// ============================================
+
+.photos-section {
+  margin-bottom: $spacing-unit * 4;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-unit * 2;
+}
+
+.album-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    .album-card-1 {
+      transform: rotate(0deg) translateY(0);
+    }
+    
+    .album-card-2 {
+      transform: rotate(-8deg) translateX(-15px) translateY(5px);
+    }
+    
+    .album-card-3 {
+      transform: rotate(8deg) translateX(15px) translateY(5px);
+    }
+  }
+}
+
+.album-cards {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin-bottom: $spacing-unit;
+  perspective: 1000px;
+}
+
+.album-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// Stack positioning - bottom card first, top card last
+.album-card-3 {
+  z-index: 1;
+  transform: rotate(4deg) translateX(6px) translateY(6px);
+}
+
+.album-card-2 {
+  z-index: 2;
+  transform: rotate(-3deg) translateX(-4px) translateY(3px);
+}
+
+.album-card-1 {
+  z-index: 3;
+  transform: rotate(0deg);
+}
+
+.album-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+  
+  .album-stack:hover & {
+    color: var(--color-accent);
+  }
+}
+
+.album-count {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+// ============================================
+// Album Page
+// ============================================
+
+.album-header {
+  margin-bottom: $spacing-unit * 2;
+}
+
+.album-page-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: $spacing-unit * 0.5;
+  letter-spacing: -0.02em;
+}
+
+.album-date {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.album-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: $spacing-unit * 2.5;
+  max-width: 540px;
+
+  p {
+    margin: 0;
+  }
+}
+
+// Responsive Photo Grid - 2 columns
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-unit;
+  margin-top: $spacing-unit * 2;
+}
+
+.photo-item {
+  margin: 0;
+}
+
+.photo-link {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-border);
+  
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.photo-link img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-caption {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: $spacing-unit * 0.5;
+  text-align: center;
+}
+
+// Lightbox Modal
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-unit * 2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: zoom-out;
+  
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  .lightbox.is-active & {
+    transform: scale(1);
+  }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: $spacing-unit;
+  right: $spacing-unit;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
+}
+
+// ============================================
 // Responsive
 // ============================================
 
@@ -536,6 +768,25 @@ a {
 
   .post-list-date {
     font-size: 0.8rem;
+  }
+
+  .album-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: $spacing-unit * 1.5;
+  }
+
+  .album-cards {
+    width: 150px;
+    height: 150px;
+  }
+
+  .album-page-title {
+    font-size: 1.75rem;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-unit * 0.75;
   }
 }
 

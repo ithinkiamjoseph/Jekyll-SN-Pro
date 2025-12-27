@@ -1,0 +1,93 @@
+---
+layout: default
+---
+
+<article class="album">
+  <header class="album-header">
+    <a href="{{ '/' | relative_url }}" class="back-link">← Back</a>
+    <h1 class="album-page-title">{{ page.title }}</h1>
+    {% if page.date %}
+      <time class="album-date" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %Y" }}
+      </time>
+    {% endif %}
+  </header>
+
+  {% if page.description %}
+    <div class="album-description">
+      {{ page.description | markdownify }}
+    </div>
+  {% endif %}
+
+  {% if page.photos %}
+    <div class="photo-grid">
+      {% for photo in page.photos %}
+        <figure class="photo-item">
+          <a href="{{ photo.src | relative_url }}" class="photo-link" data-lightbox>
+            <img src="{{ photo.src | relative_url }}" alt="{{ photo.alt | default: '' }}" loading="lazy">
+          </a>
+          {% if photo.caption %}
+            <figcaption class="photo-caption">{{ photo.caption }}</figcaption>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {{ content }}
+</article>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <img class="lightbox-image" src="" alt="">
+</div>
+
+<script>
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('.lightbox-image');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const photoLinks = document.querySelectorAll('[data-lightbox]');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-active');
+    document.body.style.overflow = '';
+  }
+
+  photoLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const img = this.querySelector('img');
+      openLightbox(this.href, img ? img.alt : '');
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-active')) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
+
