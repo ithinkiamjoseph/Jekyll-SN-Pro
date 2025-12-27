@@ -508,16 +508,8 @@ a {
     font-size: 1.15rem;
   }
 
-  .post-list-item {
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: flex-start;
-
-    &.has-image {
-      flex-direction: row;
-      align-items: center;
-      gap: $spacing-unit * 0.75;
-    }
+  .post-list-item.has-image {
+    gap: $spacing-unit * 0.75;
   }
 
   .post-list-image {
