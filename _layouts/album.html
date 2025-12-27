@@ -19,7 +19,26 @@ layout: default
     </div>
   {% endif %}
 
-  {% if page.photos %}
+  {% comment %} Auto-load images from folder if specified {% endcomment %}
+  {% if page.folder %}
+    {% assign folder_path = "/assets/images/" | append: page.folder | append: "/" %}
+    {% assign folder_images = site.static_files | where_exp: "file", "file.path contains folder_path" | sort: "name" %}
+    
+    <div class="photo-grid">
+      {% for image in folder_images %}
+        {% assign ext = image.extname | downcase %}
+        {% if ext == ".jpg" or ext == ".jpeg" or ext == ".png" or ext == ".gif" or ext == ".webp" %}
+          <figure class="photo-item">
+            <a href="{{ image.path | relative_url }}" class="photo-link" data-lightbox>
+              <img src="{{ image.path | relative_url }}" alt="" loading="lazy">
+            </a>
+          </figure>
+        {% endif %}
+      {% endfor %}
+    </div>
+  
+  {% elsif page.photos %}
+    {% comment %} Manual photo list fallback {% endcomment %}
     <div class="photo-grid">
       {% for photo in page.photos %}
         <figure class="photo-item">
