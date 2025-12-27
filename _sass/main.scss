@@ -445,8 +445,25 @@ a {
   width: 16px;
   height: 16px;
   color: var(--color-text);
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, opacity 0.3s ease;
   opacity: 0.7;
+}
+
+// Show sun in dark mode, moon in light mode
+.theme-icon-sun {
+  display: block;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: block;
 }
 
 .theme-toggle-track {
