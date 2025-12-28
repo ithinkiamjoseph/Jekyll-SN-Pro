@@ -2,5 +2,25 @@
 # Front matter required for Jekyll to process SCSS
 ---
 
+// ============================================
+// SN Pro Font Loading (using Jekyll baseurl)
+// ============================================
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("{{ site.baseurl }}/assets/fonts/SNPro-VariableRegular.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("{{ site.baseurl }}/assets/fonts/SNPro-VariableItalic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @import "main";
 
