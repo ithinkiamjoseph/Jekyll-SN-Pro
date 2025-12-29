@@ -53,6 +53,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: $font-family;
   font-weight: 400;
   line-height: 1.6;
@@ -69,7 +70,7 @@ body {
 .container {
   max-width: 640px;
   margin: 0 auto;
-  padding: ($spacing-unit * 2.5) $spacing-unit * 1.5 ($spacing-unit * 4);
+  padding: $spacing-unit * 3.5 $spacing-unit * 1.5 ($spacing-unit * 4);
 }
 
 // ============================================
@@ -188,9 +189,37 @@ a {
   margin-top: $spacing-unit * 0.25;
 }
 
-// All Posts Section
-.all-posts {
+// Recent Posts Section (Homepage)
+.recent-posts {
+  margin-bottom: $spacing-unit * 4;
+}
+
+.view-all-link {
+  display: inline-block;
+  margin-top: $spacing-unit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+// Archive Page
+.archive {
   margin-bottom: $spacing-unit * 2;
+}
+
+.archive-header {
+  margin-bottom: $spacing-unit * 2;
+}
+
+.archive-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .year-group {
@@ -400,9 +429,9 @@ a {
 // ============================================
 
 .theme-toggle-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: $spacing-unit * 2;
+  position: absolute;
+  top: $spacing-unit;
+  right: $spacing-unit;
 }
 
 .theme-toggle {
@@ -717,7 +746,7 @@ a {
   }
 
   .container {
-    padding: $spacing-unit * 2.5 $spacing-unit;
+    padding: $spacing-unit * 3.5 $spacing-unit;
   }
 
   .intro-name {
