@@ -2,7 +2,12 @@
 layout: post
 title: "Building Better Habits"
 date: 2025-12-15
+category: Productivity
 description: "Thoughts on creating sustainable routines that actually stick."
+tags:
+  - productivity
+  - habits
+  - self-improvement
 ---
 
 The hardest part of any habit isn't the action itself—it's showing up consistently. Here's what I've learned about making habits that last.

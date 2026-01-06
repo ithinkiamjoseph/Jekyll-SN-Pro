@@ -34,54 +34,23 @@ layout: default
     </article>
   </section>
 
-  <section class="recent-posts">
-    <h2 class="section-header">Recent Posts</h2>
+  <section class="all-posts">
+    <h2 class="section-header">All Posts</h2>
     
-    <ul class="post-list">
-      {% assign recent_posts = posts | slice: 1, 5 %}
-      {% for post in recent_posts %}
-        <li class="post-list-item {% if post.featured_image %}has-image{% endif %}">
-          {% if post.featured_image %}
-            <a href="{{ post.url | relative_url }}" class="post-list-image-link">
-              <img src="{{ post.featured_image | relative_url }}" alt="" class="post-list-image">
-            </a>
-          {% endif %}
-          <div class="post-list-content">
-            <a href="{{ post.url | relative_url }}" class="post-list-title">{{ post.title }}</a>
-            <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
-              {{ post.date | date: "%b %d" }}
-            </time>
-          </div>
+    <ul class="post-list-minimal">
+      {% for post in posts offset:1 %}
+        <li class="post-list-minimal-item">
+          <a href="{{ post.url | relative_url }}" class="post-list-minimal-link">
+            <span class="post-list-minimal-title">{{ post.title }}</span>
+            <span class="post-list-minimal-meta">
+              {% if post.category %}<span class="post-category">{{ post.category | upcase }}</span><span class="meta-separator">~</span>{% endif %}<span class="post-year">{{ post.date | date: "%Y" }}</span>
+            </span>
+          </a>
         </li>
       {% endfor %}
     </ul>
-    
-    <a href="{{ '/posts/' | relative_url }}" class="view-all-link">View all posts →</a>
-  </section>
-
-  <section class="photos-section">
-    <h2 class="section-header">Photos</h2>
-    
-    <div class="album-grid">
-      <a href="{{ '/photos/test-album/' | relative_url }}" class="album-stack">
-        <div class="album-cards">
-          <div class="album-card album-card-3">
-            <img src="{{ '/assets/images/test-album/test3.jpg' | relative_url }}" alt="">
-          </div>
-          <div class="album-card album-card-2">
-            <img src="{{ '/assets/images/test-album/test2.JPG' | relative_url }}" alt="">
-          </div>
-          <div class="album-card album-card-1">
-            <img src="{{ '/assets/images/test-album/test1.JPG' | relative_url }}" alt="">
-          </div>
-        </div>
-        <span class="album-title">Test Album</span>
-        <span class="album-count">3 photos</span>
-      </a>
-    </div>
   </section>
 
 {% else %}
   <p class="empty-state">No posts yet.</p>
 {% endif %}
-

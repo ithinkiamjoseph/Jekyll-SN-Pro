@@ -1,0 +1,36 @@
+---
+layout: default
+title: Photos
+---
+
+<section class="photos-page">
+  <header class="photos-header">
+    <h1 class="photos-title">Photos</h1>
+    <p class="photos-intro">A collection of moments I've captured—exploring light, texture, and the beauty found in everyday scenes.</p>
+  </header>
+
+  <div class="album-grid">
+    {% assign album_files = site.pages | where_exp: "page", "page.layout == 'album'" %}
+    {% for album in album_files %}
+      {% assign folder = album.folder %}
+      {% assign images_path = '/assets/images/' | append: folder | append: '/' %}
+      
+      <a href="{{ album.url | relative_url }}" class="album-stack">
+        <div class="album-cards">
+          <div class="album-card album-card-3">
+            <img src="{{ images_path | append: 'test3.jpg' | relative_url }}" alt="">
+          </div>
+          <div class="album-card album-card-2">
+            <img src="{{ images_path | append: 'test2.JPG' | relative_url }}" alt="">
+          </div>
+          <div class="album-card album-card-1">
+            <img src="{{ images_path | append: 'test1.JPG' | relative_url }}" alt="">
+          </div>
+        </div>
+        <span class="album-title">{{ album.title }}</span>
+        <span class="album-count">3 photos</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+

@@ -40,6 +40,12 @@
       </div>
     </button>
   </div>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}is-active{% endif %}">Writing</a>
+      <a href="{{ '/photos/' | relative_url }}" class="nav-link {% if page.url contains '/photos' %}is-active{% endif %}">Photos</a>
+    </nav>
+  </header>
   <main class="container">
     {{ content }}
   </main>

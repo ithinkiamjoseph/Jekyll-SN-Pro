@@ -2,7 +2,12 @@
 layout: post
 title: "Light and Shadow"
 date: 2025-12-10
+category: Photography
 description: "Exploring the interplay of light in street photography and everyday moments."
+tags:
+  - photography
+  - creativity
+  - street
 ---
 
 There's something magical about the way light transforms ordinary scenes into something worth capturing. This is what keeps me coming back to photography.

@@ -5,7 +5,6 @@ title: All Posts
 
 <section class="archive">
   <header class="archive-header">
-    <a href="{{ '/' | relative_url }}" class="back-link">← Back</a>
     <h1 class="archive-title">All Posts</h1>
   </header>
 
@@ -15,24 +14,18 @@ title: All Posts
   {% for year in posts_by_year %}
     <div class="year-group">
       <h2 class="year-header">{{ year.name }}</h2>
-      <ul class="post-list">
+      <ul class="post-list-minimal">
         {% for post in year.items %}
-          <li class="post-list-item {% if post.featured_image %}has-image{% endif %}">
-            {% if post.featured_image %}
-              <a href="{{ post.url | relative_url }}" class="post-list-image-link">
-                <img src="{{ post.featured_image | relative_url }}" alt="" class="post-list-image">
-              </a>
-            {% endif %}
-            <div class="post-list-content">
-              <a href="{{ post.url | relative_url }}" class="post-list-title">{{ post.title }}</a>
-              <time class="post-list-date" datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: "%b %d" }}
-              </time>
-            </div>
+          <li class="post-list-minimal-item">
+            <a href="{{ post.url | relative_url }}" class="post-list-minimal-link">
+              <span class="post-list-minimal-title">{{ post.title }}</span>
+              <span class="post-list-minimal-meta">
+                {% if post.category %}<span class="post-category">{{ post.category | upcase }}</span><span class="meta-separator">~</span>{% endif %}<span class="post-year">{{ post.date | date: "%b %d" }}</span>
+              </span>
+            </a>
           </li>
         {% endfor %}
       </ul>
     </div>
   {% endfor %}
 </section>
-

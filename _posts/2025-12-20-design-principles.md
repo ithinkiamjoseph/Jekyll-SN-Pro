@@ -2,7 +2,12 @@
 layout: post
 title: "Design Principles I Live By"
 date: 2025-12-20
+category: Design
 description: "A collection of guiding principles that shape how I approach every design problem."
+tags:
+  - design
+  - principles
+  - philosophy
 ---
 
 Over the years, I've developed a set of principles that guide my design work. These aren't rigid rules—they're more like a compass that helps me navigate complex decisions.

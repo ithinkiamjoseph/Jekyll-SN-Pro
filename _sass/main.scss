@@ -70,7 +70,38 @@ body {
 .container {
   max-width: 640px;
   margin: 0 auto;
-  padding: $spacing-unit * 3.5 $spacing-unit * 1.5 ($spacing-unit * 4);
+  padding: $spacing-unit * 2 $spacing-unit * 1.5 ($spacing-unit * 4);
+}
+
+// ============================================
+// Site Header & Navigation
+// ============================================
+
+.site-header {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: $spacing-unit * 1.5 $spacing-unit * 1.5 0;
+}
+
+.site-nav {
+  display: flex;
+  gap: $spacing-unit * 1.5;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--color-text);
+  }
+  
+  &.is-active {
+    color: var(--color-text);
+  }
 }
 
 // ============================================
@@ -204,6 +235,73 @@ a {
   &:hover {
     color: var(--color-accent);
   }
+}
+
+// All Posts Section - Minimal List Style
+.all-posts {
+  margin-bottom: $spacing-unit * 4;
+}
+
+.post-list-minimal {
+  list-style: none;
+}
+
+.post-list-minimal-item {
+  border-top: 1px solid var(--color-border);
+  transition: border-color 0.3s ease;
+  
+  &:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.post-list-minimal-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-unit;
+  padding: $spacing-unit * 0.9 0;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    .post-list-minimal-title {
+      color: var(--color-accent);
+    }
+  }
+}
+
+.post-list-minimal-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color 0.2s ease;
+}
+
+.post-list-minimal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+.post-category {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.meta-separator {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+.post-year {
+  font-variant-numeric: tabular-nums;
 }
 
 // Archive Page
@@ -505,6 +603,33 @@ a {
 }
 
 // ============================================
+// Photos Page
+// ============================================
+
+.photos-page {
+  margin-bottom: $spacing-unit * 2;
+}
+
+.photos-header {
+  margin-bottom: $spacing-unit * 3;
+}
+
+.photos-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: $spacing-unit * 0.75;
+}
+
+.photos-intro {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 480px;
+}
+
+// ============================================
 // Photos Section - Album Stacks
 // ============================================
 
@@ -745,8 +870,12 @@ a {
     font-size: 16px;
   }
 
+  .site-header {
+    padding: $spacing-unit $spacing-unit 0;
+  }
+
   .container {
-    padding: $spacing-unit * 3.5 $spacing-unit;
+    padding: $spacing-unit * 2 $spacing-unit;
   }
 
   .intro-name {
@@ -777,6 +906,20 @@ a {
 
   .post-list-date {
     font-size: 0.8rem;
+  }
+
+  .post-list-minimal-link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-unit * 0.25;
+  }
+
+  .post-list-minimal-meta {
+    font-size: 0.75rem;
+  }
+
+  .photos-title {
+    font-size: 1.75rem;
   }
 
   .album-grid {
